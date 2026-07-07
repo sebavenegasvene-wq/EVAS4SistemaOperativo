@@ -8,164 +8,97 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader">
+            <i class="fas fa-microchip fa-spin"></i>
+            <p>Cargando TechInventory...</p>
+        </div>
+    </div>
+
     <!-- Encabezado -->
-    <header class="header">
+    <header class="header" id="header">
         <div class="container header-content">
             <div class="logo">
-                <i class="fas fa-microchip"></i>
+                <img src="https://cdn-icons-png.flaticon.com/512/900/900618.png" alt="TechInventory Logo" class="logo-img">
                 <span>TechInventory</span>
             </div>
             <nav class="nav-menu">
-                <ul>
-                    <li><a href="#" class="active">Inicio</a></li>
-                    <li><a href="#">Productos</a></li>
-                    <li><a href="#">Nosotros</a></li>
-                    <li><a href="#">Contacto</a></li>
+                <ul id="navLinks">
+                    <li><a href="#home" class="active" data-section="home">Inicio</a></li>
+                    <li><a href="#products" data-section="products">Productos</a></li>
+                    <li><a href="#about" data-section="about">Nosotros</a></li>
+                    <li><a href="#contact" data-section="contact">Contacto</a></li>
+                    <li>
+                        <button class="cart-btn" id="cartBtn">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count" id="cartCount">0</span>
+                        </button>
+                    </li>
                 </ul>
-                <button class="mobile-menu-btn">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fas fa-bars"></i>
                 </button>
             </nav>
         </div>
     </header>
 
-    <!-- Sección principal -->
-    <section class="hero-section">
+    <!-- Sección principal Home -->
+    <section class="hero-section" id="home">
         <div class="container">
             <div class="hero-content">
                 <h1>Bienvenido al Sistema de Inventario</h1>
                 <p>Este sistema permite administrar el inventario de productos tecnológicos, facilitando el control de stock, precios y fechas de ingreso.</p>
                 <div class="hero-buttons">
-                    <a href="#" class="btn btn-primary">Ver Productos</a>
-                    <a href="#" class="btn btn-secondary">Más Información</a>
+                    <a href="#products" class="btn btn-primary">Ver Productos</a>
+                    <a href="#about" class="btn btn-secondary">Más Información</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Productos destacados -->
-    <section class="featured-products">
+    <section class="featured-products" id="products">
         <div class="container">
             <h2>Productos Destacados</h2>
             <p class="section-subtitle">Descubre nuestros productos tecnológicos más populares</p>
             
-            <div class="table-responsive">
+            <!-- Filtros y búsqueda -->
+            <div class="product-controls">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Buscar productos...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="Periféricos">Periféricos</button>
+                    <button class="filter-btn" data-filter="Monitores">Monitores</button>
+                    <button class="filter-btn" data-filter="Almacenamiento">Almacenamiento</button>
+                    <button class="filter-btn" data-filter="Computadores">Computadores</button>
+                </div>
+            </div>
+            
+            <!-- Vista de tarjetas (mobile) -->
+            <div class="product-cards" id="productCards">
+                <!-- Se llenará dinámicamente -->
+            </div>
+            
+            <!-- Vista de tabla (desktop) -->
+            <div class="table-responsive" id="productTable">
                 <table class="products-table">
                     <thead>
                         <tr>
+                            <th>Imagen</th>
                             <th>Producto</th>
                             <th>Categoría</th>
                             <th>Precio</th>
                             <th>Stock</th>
-                            <th>Acción</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="product-cell">
-                                    <i class="fas fa-mouse"></i>
-                                    <span>Mouse Logitech G305</span>
-                                </div>
-                            </td>
-                            <td><span class="badge badge-perifericos">Periféricos</span></td>
-                            <td class="price">$19.990</td>
-                            <td>
-                                <span class="stock-badge stock-medium">20</span>
-                            </td>
-                            <td>
-                                <button class="btn-action" title="Ver detalles">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="btn-action" title="Editar">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="product-cell">
-                                    <i class="fas fa-keyboard"></i>
-                                    <span>Teclado Redragon Kumara</span>
-                                </div>
-                            </td>
-                            <td><span class="badge badge-perifericos">Periféricos</span></td>
-                            <td class="price">$45.990</td>
-                            <td>
-                                <span class="stock-badge stock-low">10</span>
-                            </td>
-                            <td>
-                                <button class="btn-action" title="Ver detalles">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="btn-action" title="Editar">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="product-cell">
-                                    <i class="fas fa-desktop"></i>
-                                    <span>Monitor LG 24"</span>
-                                </div>
-                            </td>
-                            <td><span class="badge badge-monitores">Monitores</span></td>
-                            <td class="price">$149.990</td>
-                            <td>
-                                <span class="stock-badge stock-low">8</span>
-                            </td>
-                            <td>
-                                <button class="btn-action" title="Ver detalles">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="btn-action" title="Editar">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="product-cell">
-                                    <i class="fas fa-hdd"></i>
-                                    <span>SSD Kingston 1 TB</span>
-                                </div>
-                            </td>
-                            <td><span class="badge badge-almacenamiento">Almacenamiento</span></td>
-                            <td class="price">$69.990</td>
-                            <td>
-                                <span class="stock-badge stock-medium">15</span>
-                            </td>
-                            <td>
-                                <button class="btn-action" title="Ver detalles">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="btn-action" title="Editar">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="product-cell">
-                                    <i class="fas fa-laptop"></i>
-                                    <span>Notebook Lenovo IdeaPad</span>
-                                </div>
-                            </td>
-                            <td><span class="badge badge-computadores">Computadores</span></td>
-                            <td class="price">$649.990</td>
-                            <td>
-                                <span class="stock-badge stock-low">5</span>
-                            </td>
-                            <td>
-                                <button class="btn-action" title="Ver detalles">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="btn-action" title="Editar">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                            </td>
-                        </tr>
+                    <tbody id="productTableBody">
+                        <!-- Se llenará dinámicamente -->
                     </tbody>
                 </table>
             </div>
@@ -173,36 +106,29 @@
     </section>
 
     <!-- Sección de características -->
-    <section class="features-section">
+    <section class="features-section" id="about">
         <div class="container">
+            <h2 class="section-title">¿Por qué elegir TechInventory?</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-boxes"></i>
-                    </div>
+                    <img src="https://cdn-icons-png.flaticon.com/512/2476/2476996.png" alt="Control de Stock" class="feature-img">
                     <h3>Control de Stock</h3>
-                    <p>Monitorea el inventario en tiempo real y recibe alertas de stock bajo.</p>
+                    <p>Monitorea el inventario en tiempo real y recibe alertas de stock bajo automáticamente.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-tags"></i>
-                    </div>
+                    <img src="https://cdn-icons-png.flaticon.com/512/984/984144.png" alt="Gestión de Precios" class="feature-img">
                     <h3>Gestión de Precios</h3>
-                    <p>Actualiza precios de forma masiva y mantén un historial de cambios.</p>
+                    <p>Actualiza precios de forma masiva y mantén un historial detallado de cambios.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
+                    <img src="https://cdn-icons-png.flaticon.com/512/2693/2693507.png" alt="Control de Fechas" class="feature-img">
                     <h3>Control de Fechas</h3>
-                    <p>Registra fechas de ingreso y garantía de cada producto.</p>
+                    <p>Registra fechas de ingreso y garantía de cada producto automáticamente.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <h3>Reportes</h3>
-                    <p>Genera informes detallados sobre el estado del inventario.</p>
+                    <img src="https://cdn-icons-png.flaticon.com/512/3189/3189320.png" alt="Reportes" class="feature-img">
+                    <h3>Reportes Avanzados</h3>
+                    <p>Genera informes detallados sobre el estado del inventario en tiempo real.</p>
                 </div>
             </div>
         </div>
@@ -213,31 +139,125 @@
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <span class="stat-number">150+</span>
-                    <span class="stat-label">Productos</span>
+                    <span class="stat-number" data-target="150">0</span>
+                    <span class="stat-label">Productos Totales</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">8</span>
+                    <span class="stat-number" data-target="8">0</span>
                     <span class="stat-label">Categorías</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">24/7</span>
-                    <span class="stat-label">Monitoreo</span>
+                    <span class="stat-number" data-target="24">0</span>
+                    <span class="stat-label">Horas de Monitoreo</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">99.9%</span>
-                    <span class="stat-label">Precisión</span>
+                    <span class="stat-number" data-target="99.9">0</span>
+                    <span class="stat-label">% Precisión</span>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Sección de contacto -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Dirección</h4>
+                            <p>Av. Tecnología 1234, Santiago, Chile</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p>+56 2 1234 5678</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@techinventory.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Horario</h4>
+                            <p>Lun - Vie: 9:00 - 18:00</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <h3>Envíanos un mensaje</h3>
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" placeholder="Asunto" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" placeholder="Tu mensaje" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de producto -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="modal-body" id="modalBody">
+                <!-- Se llenará dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrito de compras sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Carrito de Compras</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart">El carrito está vacío</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0</span>
+            </div>
+            <button class="btn btn-primary btn-block" id="checkoutBtn">Proceder al pago</button>
+        </div>
+    </div>
+
+    <!-- Notificación toast -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="toastMessage"></span>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>TechInventory</h3>
+                    <div class="footer-logo">
+                        <img src="https://cdn-icons-png.flaticon.com/512/900/900618.png" alt="TechInventory Logo">
+                        <h3>TechInventory</h3>
+                    </div>
                     <p>Sistema de gestión de inventario tecnológico de última generación.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -249,19 +269,28 @@
                 <div class="footer-section">
                     <h4>Enlaces Rápidos</h4>
                     <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Productos</a></li>
-                        <li><a href="#">Nosotros</a></li>
-                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#products">Productos</a></li>
+                        <li><a href="#about">Nosotros</a></li>
+                        <li><a href="#contact">Contacto</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Contacto</h4>
-                    <ul class="contact-info">
-                        <li><i class="fas fa-envelope"></i> info@techinventory.com</li>
-                        <li><i class="fas fa-phone"></i> +56 2 1234 5678</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Santiago, Chile</li>
+                    <h4>Categorías</h4>
+                    <ul>
+                        <li><a href="#">Periféricos</a></li>
+                        <li><a href="#">Monitores</a></li>
+                        <li><a href="#">Almacenamiento</a></li>
+                        <li><a href="#">Computadores</a></li>
                     </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Suscríbete para recibir ofertas</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Tu email" required>
+                        <button type="submit" class="btn btn-primary">Suscribir</button>
+                    </form>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -269,5 +298,7 @@
             </div>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
